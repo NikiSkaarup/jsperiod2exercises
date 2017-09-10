@@ -1,0 +1,6 @@
+extends layout
+
+block content
+  p hi, #{names}
+  form(action='/form', method='post')
+    input(type="text", name='name')
