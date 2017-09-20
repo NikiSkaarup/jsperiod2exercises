@@ -5,7 +5,7 @@
  */
 
 var app = require('../app');
-var debug = require('debug')('fuckexpress:server');
+var debug = require('debug')('fromalmostzerotostart:server');
 var http = require('http');
 
 /**

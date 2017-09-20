@@ -18,7 +18,7 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'ns.png')));
 
 var index = require('./routes/index');
 
-app.use('/', routes);
+app.use('/', index);
 
 var names = [];
 app.get('/form', function (req, res) {
