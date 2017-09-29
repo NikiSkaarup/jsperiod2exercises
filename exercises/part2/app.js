@@ -12,6 +12,7 @@ var addjoke = require('./routes/addjoke');
 var storejoke = require('./routes/storejoke');
 var users = require('./routes/users');
 var login = require('./routes/login');
+var rest = require('./routes/rest');
 var session = require("express-session");
 
 var app = express();
@@ -30,6 +31,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({ secret: 'xxx', saveUninitialized: true, resave: true }));
 
 app.use((req, res, next) => {
+  if (req.url.startsWith('/api/')) return next();
   if (req.body.username) req.session.username = req.body.username;
   if (req.session.username) next();
   else {
@@ -45,6 +47,7 @@ app.use('/jokes', jokes);
 app.use('/addjoke', addjoke);
 app.use('/storejoke', storejoke);
 app.use('/login', login);
+app.use('/api', rest);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
