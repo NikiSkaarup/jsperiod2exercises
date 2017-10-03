@@ -1,24 +1,43 @@
-var expect = require("chai").expect;
+const expect = require('chai').expect;
+const calculator = require('../lib/calculator');
+const util = require('../util/mymodule');
+const fs = require('fs');
 
-describe('Array', () => {
-  describe('Verify the #indexOf()', () => {
-    it('should return -1 when the value is not present', () => {
-      expect([1, 2, 3].indexOf(0)).to.equal(-1);
-      expect([1, 2, 3].indexOf(5)).to.equal(-1);
-      expect([1, 2, 3].indexOf(3)).to.have.been.at.that.which.does.with.same.of.be.but.is.ok.and.has.equal(2);
+describe('calculator', () => {
+  describe('divide()', () => {
+    it('should fail on division by 0', () => {
+      expect(() => calculator.divide(1, 0)).to.throw('Attempt to divide by zero');
     });
   });
 });
 
-describe("Testing async behaviour", () => {
-  var foo = false;
-  before((done) => {
-    setTimeout(() => {
-      foo = true;
-      done();  //Test will fail without this
-    }, 1000);
-  });
-  it("should pass (with done called)", () => {
-    expect(foo).to.equal(true);
+
+let dir = '';
+let file = '';
+let ext = 'hej';
+before(() => {
+  dir = `hello-${Number.parseInt(Math.random() * 1000, 10)}`;
+  file = `asd-${Number.parseInt(Math.random() * 1000, 10)}.${ext}`;
+  fs.mkdirSync(dir);
+  fs.writeFileSync(`${dir}/${file}`, 'fuck');
+});
+
+after(() => {
+  fs.unlinkSync(`${dir}/${file}`);
+  fs.rmdirSync(dir);
+});
+
+describe('util', () => {
+  it('do its magic', (done) => {
+    util(dir, ext, (err, files) => {
+      if (err) throw err;
+      files.forEach(file => console.log(file));
+      done();
+    });
   });
 });
+
+
+
+
+
