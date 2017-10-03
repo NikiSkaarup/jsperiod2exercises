@@ -1,7 +1,7 @@
 require('./connection.js');
 
 // if our user.js file is at app/models/user.js
-var User = require('./models/user');
+const User = require('./models/user');
 
 
 
@@ -21,7 +21,6 @@ User.find({ username: 'starlord55' }, function(err, user) {
   console.log(user);
 });
 
-// get a user with ID of 1
 User.findById('59cb62d71419153674331fdb', function(err, user) {
   if (err) throw err;
 

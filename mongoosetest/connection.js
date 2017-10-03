@@ -1,5 +1,5 @@
-var mongoose = require("mongoose");
-var mongoURI = `mongodb://${process.env.mlabUsername}:${process.env.mlabPassword}@${process.env.mlabUrl}`;
+const mongoose = require("mongoose");
+const mongoURI = process.env.mongodb_uri; // grab uri from enviroment variables.
 mongoose.connect(mongoURI, { useMongoClient: true });
 
 mongoose.connection.on('connected', function () {
