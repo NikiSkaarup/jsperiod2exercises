@@ -1,0 +1,16 @@
+{
+  "name": "evil",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/nikiskaarup/evil.git",
+  "author": "NikiSkaarup <nikiskaarup@users.noreply.github.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node ./app.js",
+    "dev": "nodemon ./app.js"
+  },
+  "dependencies": {
+    "express": "^4.16.0",
+    "nodemon": "^1.12.1"
+  }
+}
